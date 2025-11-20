@@ -1,0 +1,63 @@
+package com.splitmate.controller;
+
+import com.splitmate.dto.CreateGroupRequest;
+import com.splitmate.dto.GroupBalanceResponse;
+import com.splitmate.dto.GroupMemberResponse;
+import com.splitmate.dto.GroupResponse;
+import com.splitmate.dto.JoinGroupRequest;
+import com.splitmate.entity.User;
+import com.splitmate.service.GroupService;
+import com.splitmate.util.AuthUtil;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+
+import java.util.List;
+import java.util.UUID;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/api/groups")
+@RequiredArgsConstructor
+public class GroupController {
+
+    private final GroupService groupService;
+
+    @PostMapping
+    public ResponseEntity<GroupResponse> createGroup(@RequestBody @Valid CreateGroupRequest request) {
+        User currentUser = AuthUtil.getCurrentUser();
+        return ResponseEntity.ok(groupService.createGroup(request, currentUser));
+    }
+
+    @PostMapping("/join")
+    public ResponseEntity<GroupResponse> joinGroup(@RequestBody @Valid JoinGroupRequest request) {
+        User currentUser = AuthUtil.getCurrentUser();
+        return ResponseEntity.ok(groupService.joinGroup(request, currentUser));
+    }
+
+    @GetMapping("/{groupId}/members")
+    public ResponseEntity<List<GroupMemberResponse>> getGroupMembers(@PathVariable UUID groupId) {
+        User currentUser = AuthUtil.getCurrentUser();
+        return ResponseEntity.ok(groupService.getGroupMembers(groupId, currentUser));
+    }
+
+    @GetMapping("/{groupId}/balances")
+    public ResponseEntity<List<GroupBalanceResponse>> getGroupBalances(@PathVariable UUID groupId) {
+        User currentUser = AuthUtil.getCurrentUser();
+        return ResponseEntity.ok(groupService.getGroupBalances(groupId, currentUser));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<GroupResponse>> getMyGroups() {
+        User currentUser = AuthUtil.getCurrentUser();
+        return ResponseEntity.ok(groupService.getGroupsForUser(currentUser));
+    }
+
+    @GetMapping("/{groupId}")
+    public ResponseEntity<GroupResponse> getGroupById(@PathVariable UUID groupId) {
+        User currentUser = AuthUtil.getCurrentUser();
+        return ResponseEntity.ok(groupService.getGroupById(groupId, currentUser));
+    }
+
+}
