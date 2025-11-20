@@ -1,64 +1,66 @@
-# FairSplit 💸
+# SplitMate 💸
 
-**FairSplit** is a full-stack expense splitting app built with:
+**SplitMate** is a full-stack expense splitting platform designed to simplify group expense tracking and balance reconciliation. Built with a modern tech stack, it ensures transactional consistency and a responsive user experience.
 
-- 🔧 **Spring Boot + PostgreSQL** backend (REST API, JWT auth)
-- ⚛️ **React + Vite + TailwindCSS** frontend (clean UI, modern stack)
-- 🔐 Secure login, register, and token-based session
-- 👥 Create/join groups via invite code
-- 💰 Add expenses, track balances, and settle up smartly
+## 🚀 Features
 
----
-
-## 🛠️ Project Structure
-
-```
-fairsplit/
-├── backend/     # Java backend (Spring Boot)
-├── frontend/    # React frontend (Vite + Tailwind)
-```
+- **Group Management**: Create and join groups seamlessly with invite-based logic.
+- **Expense Tracking**: Add shared expenses, split costs equitably, and track spending history.
+- **Live Balance Reconciliation**: Real-time calculation of "who owes who" to simplify settlements.
+- **Secure Authentication**: JWT-based stateless authentication for secure user sessions.
+- **Responsive UI**: A polished, mobile-friendly interface built with React and Tailwind CSS.
+- **Production Ready**: Containerized with Docker for consistent deployment across environments.
 
 ---
 
-## ✨ Features
+## 🛠️ Tech Stack
 
-- User registration & login (JWT secured)
-- Create and join groups via invite code
-- Add expenses with custom splits
-- View group members, balances, and minimal settlements
-- Fully documented API via Swagger
-
----
-
-## 🔧 Tech Stack
-
-| Backend       | Frontend           |
-| ------------- | ------------------ |
-| Java 21       | React + Vite       |
-| Spring Boot 3 | TailwindCSS v4     |
-| PostgreSQL    | Axios (API layer)  |
-| JWT Auth      | React Router       |
-| Flyway        | Context API (Auth) |
+| Component | Technology |
+| :--- | :--- |
+| **Frontend** | React, Tailwind CSS, Vite |
+| **Backend** | Java 21, Spring Boot 3 |
+| **Database** | PostgreSQL |
+| **Auth** | JWT (JSON Web Tokens) |
+| **DevOps** | Docker, Docker Compose |
 
 ---
 
 ## 📦 Getting Started
 
-1. **Clone the repo**
+### Prerequisites
+
+- **Docker** & **Docker Compose** (Recommended)
+- **Java 21** (For local backend dev)
+- **Node.js 20+** (For local frontend dev)
+
+### Quick Start (Docker)
+
+The easiest way to run SplitMate is using Docker Compose. This will spin up the Database, Backend, and Frontend services.
 
 ```bash
-git clone https://github.com/yourusername/fairsplit.git
-cd fairsplit
+# Clone the repository
+git clone https://github.com/Bhavya700/SplitMate.git
+cd SplitMate
+
+# Start the application
+docker-compose up --build
 ```
 
-2. **Run Backend**
+- **Frontend**: [http://localhost:5173](http://localhost:5173)
+- **API Docs**: [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
+
+---
+
+## 🔧 Local Development
+
+### Backend (Spring Boot)
 
 ```bash
-cd backend
+cd .
 ./gradlew bootRun
 ```
 
-3. **Run Frontend**
+### Frontend (React)
 
 ```bash
 cd frontend
@@ -66,22 +68,8 @@ npm install
 npm run dev
 ```
 
-4. Visit:
-   Frontend: `http://localhost:5173`  
-   Swagger UI: `http://localhost:8080/swagger-ui/index.html`
-
 ---
 
-## 💪 To Do / In Progress
+## 📄 License
 
-- [ ] UI polish + group views
-- [ ] Group creation/joining in frontend
-- [ ] Settlements UI
-- [ ] Deployment (Render + Vercel?)
-- [ ] OpenAPI YAML export
-
----
-
-## 💬 License
-
-MIT or your choice. Customize here.
+This project is licensed under the MIT License.
